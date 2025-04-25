@@ -1,70 +1,63 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import '../styles/App.css';
 
 class App extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            renderBall: false,
-            posi : 0,
-            ballPosition:{left:"0px"}
-        };
-        this.renderChoice = this.renderBallOrButton.bind(this)
-        this.buttonClickHandler = this.buttonClickHandler.bind(this)
-        this.handleKeyDown = this.handleKeyDown.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      renderBall: false, // Controls whether the ball is rendered
+      ballPosition: { left: "0px" }, // Tracks the ball's position
     };
+    this.renderBallOrButton = this.renderBallOrButton.bind(this);
+    this.buttonClickHandler = this.buttonClickHandler.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
 
-    buttonClickHandler() {
-        this.setState({ renderBall: true });
-        // this.render()
-   }
+  // Handles the start button click
+  buttonClickHandler() {
+    this.setState({ renderBall: true });
+  }
 
-    handleKeyDown(e){
-        if (e.key === 'ArrowRight') {
-            // let currentLeft = parseInt(this.state.ballPosition.left);
-            // let newLeft = currentLeft + 5;
-            // this.setState({ballPosition:{left:`${newLeft}px`}});
-            this.setState((prevState) => {
-                const newPosition = parseInt(prevState.ballPosition.left, 10) + 5;
-                return { ballPosition: { left: `${newPosition}px` } };
-              });
-        }
-        // if (e.key === "ArrowLeft") {
-        //     let currentLeft = parseInt(this.state.ballPosition.left);
-        //     let newLeft = currentLeft  -5;
-        //     this.setState({ ballPosition: { left:`${newLeft}px` } });
-        // }
-      }
-
-      componentDidMount() {
-        document.addEventListener("keydown", this.handleKeyDown);
+  // Handles the Right Arrow key press
+  handleKeyDown(event) {
+    if (event.keyCode === 39) { // 39 is the keyCode for the Right Arrow key
+      this.setState((prevState) => {
+        const newPosition = parseInt(prevState.ballPosition.left, 10) + 5;
+        return { ballPosition: { left: `${newPosition}px` } };
+      });
     }
+  }
 
-    componentWillUnmount() {
-        document.removeEventListener("keydown", this.handleKeyDown);
-      }
+  // Adds the event listener when the component mounts
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyDown);
+  }
 
-    
-    renderBallOrButton() {
-		if (this.state.renderBall) {
-		    return <div className="ball" style={this.state.ballPosition}   ></div>
-		} else {
-		    return <button onClick={this.buttonClickHandler}  className="start" >Start</button>
-		}
+  // Removes the event listener when the component unmounts
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyDown);
+  }
+
+  // Renders either the ball or the start button
+  renderBallOrButton() {
+    if (this.state.renderBall) {
+      return <div className="ball" style={this.state.ballPosition}></div>;
+    } else {
+      return (
+        <button className="start" onClick={this.buttonClickHandler}>
+          Start
+        </button>
+      );
     }
+  }
 
-    // bind ArrowRight keydown event
-    
-    
-
-    render() {
-        return (
-            <div className="playground">
-                {this.renderBallOrButton()}
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="playground">
+        {this.renderBallOrButton()}
+      </div>
+    );
+  }
 }
-
 
 export default App;
