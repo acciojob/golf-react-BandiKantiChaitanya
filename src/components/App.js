@@ -7,7 +7,7 @@ class App extends Component {
         this.state = {
             renderBall: false,
             posi : 0,
-            ballPosition: { left: "0px" }
+            ballPosition:{left:"0px"}
         };
         this.renderChoice = this.renderBallOrButton.bind(this)
         this.buttonClickHandler = this.buttonClickHandler.bind(this)
@@ -16,15 +16,15 @@ class App extends Component {
 
     handleKeyDown(e){
         if (e.key === "ArrowRight") {
-            let currentLeft = parseInt(this.state.ballPosition.left);
-            let newLeft = currentLeft + 5;
-            this.setState({ ballPosition: { left: `${newLeft}px` } });
+            // let currentLeft = parseInt(this.state.ballPosition.left);
+            // let newLeft = currentLeft + 5;
+            this.setState({ballPosition:{left:'5px'}});
         }
-        if (e.key === "ArrowLeft") {
-            let currentLeft = parseInt(this.state.ballPosition.left);
-            let newLeft = currentLeft  -5;
-            this.setState({ ballPosition: { left: `${newLeft}px` } });
-        }
+        // if (e.key === "ArrowLeft") {
+        //     let currentLeft = parseInt(this.state.ballPosition.left);
+        //     let newLeft = currentLeft  -5;
+        //     this.setState({ ballPosition: { left:`${newLeft}px` } });
+        // }
       }
 
     buttonClickHandler() {
