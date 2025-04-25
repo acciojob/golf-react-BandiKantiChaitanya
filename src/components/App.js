@@ -20,7 +20,7 @@ class App extends Component {
    }
 
     handleKeyDown(e){
-        if (e.key === 39) {
+        if (e.key === 'ArrowRight') {
             // let currentLeft = parseInt(this.state.ballPosition.left);
             // let newLeft = currentLeft + 5;
             // this.setState({ballPosition:{left:`${newLeft}px`}});
