@@ -14,6 +14,11 @@ class App extends Component {
         this.handleKeyDown = this.handleKeyDown.bind(this);
     };
 
+    buttonClickHandler() {
+        this.setState({ renderBall: true });
+        // this.render()
+   }
+
     handleKeyDown(e){
         if (e.key === "ArrowRight") {
             let currentLeft = parseInt(this.state.ballPosition.left);
@@ -27,10 +32,15 @@ class App extends Component {
         // }
       }
 
-    buttonClickHandler() {
-        this.setState({ renderBall: true });
-        // this.render()
-   }
+      componentDidMount() {
+        document.addEventListener("keydown", this.handleKeyDown);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyDown);
+      }
+
+    
     renderBallOrButton() {
 		if (this.state.renderBall) {
 		    return <div className="ball" style={this.state.ballPosition}   ></div>
@@ -40,9 +50,7 @@ class App extends Component {
     }
 
     // bind ArrowRight keydown event
-    componentDidMount() {
-        document.addEventListener("keydown", this.handleKeyDown);
-    }
+    
     
 
     render() {
