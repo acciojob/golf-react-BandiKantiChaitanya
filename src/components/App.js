@@ -20,7 +20,7 @@ class App extends Component {
 
   // Handles the Right Arrow key press
   handleKeyDown(event) {
-    if (event.keyCode === 39) { // 39 is the keyCode for the Right Arrow key
+    if (event.key === 'ArrowRight') { // 39 is the keyCode for the Right Arrow key
       this.setState((prevState) => {
         const newPosition = parseInt(prevState.ballPosition.left, 10) + 5;
         return { ballPosition: { left: `${newPosition}px` } };
